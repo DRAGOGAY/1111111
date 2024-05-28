@@ -1,0 +1,71 @@
+using System;
+
+interface IBattleParticipant
+{
+    void TakePartInBattle();
+}
+
+class WhiteWalkers : IBattleParticipant
+{
+    public int ArmySize { get; set; }
+    public string Leader { get; set; }
+
+    public WhiteWalkers(int armySize, string leader)
+    {
+        ArmySize = armySize;
+        Leader = leader;
+    }
+
+    public void TakePartInBattle()
+    {
+        Console.WriteLine("Білі Ходоки виходять на бій!");
+    }
+}
+
+class ChildrenOfTheForest
+{
+
+    public string MagicPower { get; set; }
+
+    public ChildrenOfTheForest(string magicPower)
+    {
+        MagicPower = magicPower;
+    }
+
+    public void PerformMagic()
+    {
+        Console.WriteLine("Діти Лісу використовують свою магію.");
+    }
+}
+
+class Humans
+{
+    public string Faction { get; set; }
+
+    public Humans(string faction)
+    {
+        Faction = faction;
+    }
+
+    public void Attack()
+    {
+        Console.WriteLine("Люди готуються до нападу.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        WhiteWalkers nightKingArmy = new WhiteWalkers(10000, "Найт Кінг");
+        ChildrenOfTheForest children = new ChildrenOfTheForest("Дар магії");
+        Humans starkArmy = new Humans("Старк");
+
+        Console.WriteLine($"Армія Білих Ходоків очолює {nightKingArmy.Leader}, розмір армії: {nightKingArmy.ArmySize}");
+        children.PerformMagic();
+        Console.WriteLine($"Армія дому {starkArmy.Faction} готується до битви.");
+
+        IBattleParticipant battleParticipant = nightKingArmy;
+        battleParticipant.TakePartInBattle();
+    }
+}
